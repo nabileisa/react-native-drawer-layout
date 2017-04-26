@@ -137,17 +137,17 @@ export default class DrawerLayout extends Component {
     const dynamicDrawerStyles = {
       backgroundColor: drawerBackgroundColor,
       width: drawerWidth,
-      left: drawerPosition === 'left' ? 0 : null,
-      right: drawerPosition === 'right' ? 0 : null,
+      left: this._isRTL ? (drawerPosition === 'left' ? null : 0)  : (drawerPosition === 'left' ? 0 : null) ,
+      right: this._isRTL ? ( drawerPosition === 'right' ?  null : 0) : ( drawerPosition === 'right' ? 0 : null) ,
     };
 
     /* Drawer styles */
     let outputRange;
 
     if (drawerPosition === 'left') {
-      outputRange = this._isRTL ? [drawerWidth, 0] : [-drawerWidth, 0];
+      outputRange = [-drawerWidth, 0];
     } else {
-      outputRange = this._isRTL ? [-drawerWidth, 0] : [drawerWidth, 0];
+      outputRange = [drawerWidth, 0];
     }
 
     const drawerTranslateX = openValue.interpolate({
